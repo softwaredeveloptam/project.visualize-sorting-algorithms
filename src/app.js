@@ -28,7 +28,8 @@ document.getElementById("title").appendChild(title);
 
     In our `index.html` page, we have a short form.
     Here is the code that talks to it.
-  */
+*/
+
 function changeTitle(event) {
   event.preventDefault();
   // console.log('What is an event?', event);
