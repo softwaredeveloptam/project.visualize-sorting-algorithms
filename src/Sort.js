@@ -1,5 +1,7 @@
 class SelectionSort {
   constructor(array) {
+    this.unsortedArray;
+    this.animatedArray;
     this.array = array;
     this.valuePosition;
     this.swapPosition;
@@ -11,7 +13,22 @@ class SelectionSort {
     array[x] = temp;
   }
 
+  createUnsortedArray(array) {
+    this.unsortedArray = Array.from(array);
+    this.animatedArray = Array.from(array);
+  }
+
   sort(array, value1, value2) {
+    this.createUnsortedArray(array);
+
+    if (array === undefined) {
+      array = this.array;
+    }
+
+    if (this.array === undefined) {
+      this.array = array;
+    }
+
     for (let i = 0; i < array.length; i++) {
       let min = i;
 
@@ -23,6 +40,7 @@ class SelectionSort {
         if (value1 == array[x] && value2 == array[i]) {
           this.valuePosition = x;
           this.swapPosition = i;
+          this.array = array;
         }
       }
 
@@ -34,8 +52,35 @@ class SelectionSort {
     return array;
   }
 
+  sortSlow() {
+    for (let i = 0; i < this.animatedArray.length; i++) {
+      let min = i;
+
+      for (let x = i + 1; x < this.animatedArray.length; x++) {
+        if (this.animatedArray[x] < this.animatedArray[min]) {
+          min = x;
+        }
+      }
+
+      if (i !== min) {
+        this.swap(this.animatedArray, i, min);
+        return;
+      }
+    }
+
+    this.createUnsortedArray(this.unsortedArray);
+  }
+
   returnValue(value) {
     return value;
+  }
+
+  checkUnsortedArray() {
+    return this.unsortedArray;
+  }
+
+  checkUnsortedArrayValue(index) {
+    return this.unsortedArray[index];
   }
 
   checkSelectionSort(array, value1, value2) {

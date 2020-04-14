@@ -7,12 +7,10 @@ describe("Sort", () => {
   });
 
   it("should be a function", () => {
-    // passes
     expect(Sort).to.be.a("function");
   });
 
   it("should have a sort method", () => {
-    // passes
     expect(Sort.prototype.sort).to.be.a("function");
   });
 
@@ -31,5 +29,15 @@ describe("Sort", () => {
     expect(selection.checkSelectionSort(array, 1, 5)).to.be.deep.equal(
       positionArray
     );
+  });
+
+  it("should hold the original unsorted array", () => {
+    let array = [5, 2, 12, 4, 3, 2];
+    let firstTestArray = Array.from(array);
+    selection.sort(array);
+
+    let testArray = selection.checkUnsortedArray();
+
+    expect(testArray).to.be.deep.equal(firstTestArray);
   });
 });
